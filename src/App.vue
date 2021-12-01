@@ -1,6 +1,16 @@
 <template>
 	<div id="app">
+		<h1>Api가 pagination을 지원하는 경우</h1>
 		<CommentsList :data="comments" />
+		<Pagination
+			:total_count="allComments.length"
+			:current_Page="current_Page"
+			:onSetCurrentPage="onSetCurrentPage"
+		/>
+
+		<h1>Api가 pagination을 지원하지 않는 경우</h1>
+		<!-- 이 부분만 다름 !!!!!!!!!!-->
+		<CommentsList :data="splitAllCommets" />
 		<Pagination
 			:total_count="allComments.length"
 			:current_Page="current_Page"
@@ -52,6 +62,16 @@ export default {
 		onSetCurrentPage(page) {
 			this.current_Page = page;
 			this.getComments(page);
+		},
+	},
+	computed: {
+		// 전체 목록에서 페이지별로 임의적으로 프론트에서 잘라서 보여줌.
+		splitAllCommets() {
+			const pageCount = 4; // 한 페이지당 보여줄 목록 개수
+			const start = (this.current_Page - 1) * pageCount;
+			const end = this.current_Page * pageCount;
+
+			return this.allComments.slice(start, end);
 		},
 	},
 };
