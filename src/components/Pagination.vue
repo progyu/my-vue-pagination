@@ -21,15 +21,20 @@ export default {
 		onSetCurrentPage: Function,
 	},
 	computed: {
+		// 페이지 버튼을 만들기 위한 computed
 		pageArray() {
+			// 몇개의 버튼으로 나눌지 정하는 코드
 			const page_count = Math.ceil(this.total_count / 4);
 
+			// page 숫자가 들어갈 배열
 			const pageArray = [];
 
+			// 버튼으로 만들 숫자를 배열에 넣는 코드
 			for (let num = 1; num <= page_count; num++) {
 				pageArray.push(num);
 			}
-			return pageArray;
+
+			return pageArray; // [1,2,3 ...]
 		},
 	},
 };
