@@ -22,7 +22,7 @@ export default {
 		return {
 			allComments: [],
 			comments: [],
-			current_Page: 0,
+			current_Page: 1,
 		};
 	},
 	components: {
